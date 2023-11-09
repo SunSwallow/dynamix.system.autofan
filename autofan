@@ -300,7 +300,7 @@ function_change_fan_speed() {
       REPORTED_TEMP=$HIGHEST_TEMP
     fi
     echo "$program_name: Highest disk temp is ${REPORTED_TEMP}${TEMP_UNIT}, adjusting fan speed from: $CURRENT_OUTPUT to: $ADJUSTED_OUTPUT"
-    echo "Disk including ${DRIVES}. Highest disk temp is ${REPORTED_TEMP}${TEMP_UNIT}, adjusting fan speed from: $CURRENT_OUTPUT to: $ADJUSTED_OUTPUT" | logger -t$program_name
+    echo "Disk including ${DRIVES}. Highest disk temp is ${REPORTED_TEMP}${TEMP_UNIT}, adjusting fan speed from: $CURRENT_OUTPUT to: $ADJUSTED_OUTPUT" | tr "\n" "," | logger -t$program_name
   fi
 }
 
