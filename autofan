@@ -214,7 +214,8 @@ function_get_highest_hd_temp() {
       echo "Current CPU Temp is ${CURRENT_TEMP_CPU}. MB Temp is ${CURRENT_TEMP_MB}. Highest Temp is ${HIGHEST_TEMP}." | logger -t$program_name
       echo "$program_name Current CPU Temp is ${CURRENT_TEMP_CPU}. MB Temp is ${CURRENT_TEMP_MB}. Highest Temp is ${HIGHEST_TEMP}."
     else
-      [[ -n $HDD ]] && SLEEPING=`sdspin ${DISK}; echo $?` || SLEEPING=`hdparm -C ${DISK}|grep -c standby`
+      [[ -n $HDD ]] && SLEEPING=`/usr/local/sbin/sdspin ${DISK}; echo $?` || SLEEPING=`hdparm -C ${DISK}|grep -c standby`
+      # [[ -n $HDD ]] && SLEEPING=`hdparm -C ${DISK}|grep -c standby`
     fi
 
     if [[ $SLEEPING -eq 0 ]]; then
